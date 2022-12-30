@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+
+  "id": "${modId}",
+  "name": "${modName}",
+  "license": "The MIT License (MIT)",
+  "version": "${version}",
+  "description": "${modDescription}",
+  "environment": "client",
+
+  "authors": [
+    "${modAuthor}"
+  ],
+
+  "contact": {
+    "issues": "${githubUrl}/issues?q=is%3Aissue",
+    "sources": "${githubUrl}"
+  },
+
+  "entrypoints": {
+    "client": [
+      "dev.entirety.enoughslime.fabric.EnoughSlime"
+    ]
+  },
+  "mixins": [
+    "enoughslime.mixins.json"
+  ],
+
+  "depends": {
+    "java": ">=${modJavaVersion}",
+    "minecraft": "${minecraftVersion}",
+    "fabric-api": ">=${fabricApiVersion}",
+    "fabricloader": ">=${fabricLoaderVersion}"
+  }
+}

@@ -1,0 +1,4 @@
+name: ${modAuthor}
+main: dev.entirety.enoughslime.bukkit.EnoughSlime
+version: ${version}
+api-version: ${minecraftApiVersion}

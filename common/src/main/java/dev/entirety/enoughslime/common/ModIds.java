@@ -1,4 +1,4 @@
-package dev.entirety.enoughslime.api.constants;
+package dev.entirety.enoughslime.common;
 
 public class ModIds {
 

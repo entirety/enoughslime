@@ -20,6 +20,9 @@ val minecraftVersion: String by extra
 val fabricApiVersion: String by extra
 val fabricLoaderVersion: String by extra
 
+// JEI
+val jeiVersion: String by extra
+
 // Mappings
 val parchmentVersionFabric: String by extra
 val parchmentMinecraftVersion: String by extra
@@ -30,8 +33,7 @@ base {
 }
 
 val dependencyProjects: List<ProjectDependency> = listOf(
-    project.dependencies.project(":common"),
-    project.dependencies.project(":common-api")
+    project.dependencies.project(":common")
 )
 
 dependencyProjects.forEach {
@@ -75,6 +77,11 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:${fabricLoaderVersion}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}")
+
+    modCompileOnlyApi("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
+    modCompileOnlyApi("mezz.jei:jei-${minecraftVersion}-fabric-api:${jeiVersion}")
+
+    modRuntimeOnly("mezz.jei:jei-${minecraftVersion}-fabric:${jeiVersion}")
 
     dependencyProjects.forEach {
         implementation(it)

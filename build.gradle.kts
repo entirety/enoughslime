@@ -29,6 +29,9 @@ val loaderVersionRange: String by extra
 val fabricApiVersion: String by extra
 val fabricLoaderVersion: String by extra
 
+// JEI
+val jeiVersion: String by extra
+
 // Mappings
 val parchmentVersionFabric: String by extra
 val parchmentMinecraftVersion: String by extra
@@ -58,6 +61,13 @@ subprojects {
 
     group = modGroup
     version = "${specificationVersion}.${buildNumber}"
+
+    repositories {
+        mavenCentral()
+
+        maven("https://dvs1.progwml6.com/files/maven/")
+        maven("https://modmaven.dev")
+    }
 
     tasks.withType<JavaCompile> {
         options.encoding = Charsets.UTF_8.name()
@@ -101,7 +111,9 @@ subprojects {
                 "loaderVersionRange" to loaderVersionRange,
 
                 "fabricApiVersion" to fabricApiVersion,
-                "fabricLoaderVersion" to fabricLoaderVersion
+                "fabricLoaderVersion" to fabricLoaderVersion,
+
+                "jeiVersion" to jeiVersion
             ))
         }
     }

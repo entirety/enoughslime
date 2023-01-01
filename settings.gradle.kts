@@ -31,9 +31,4 @@ pluginManagement {
 val minecraftVersion: String by settings
 
 rootProject.name = "enoughslime-${minecraftVersion}"
-include(
-    "bukkit",
-    "common", "common-api",
-    "forge",
-    "fabric"
-)
+include("bukkit", "common", "forge", "fabric")

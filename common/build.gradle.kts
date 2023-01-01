@@ -4,10 +4,6 @@ plugins {
     `maven-publish`
 }
 
-repositories {
-    mavenCentral()
-}
-
 // EnoughSlime
 val modId: String by extra
 val modJavaVersion: String by extra
@@ -15,17 +11,12 @@ val modJavaVersion: String by extra
 // Minecraft
 val minecraftVersion: String by extra
 
+// JEI
+val jeiVersion: String by extra
+
 val baseArchivesName = "${modId}-${minecraftVersion}-common"
 base {
     archivesName.set(baseArchivesName)
-}
-
-val dependencyProjects: List<ProjectDependency> = listOf(
-    project.dependencies.project(":common-api")
-)
-
-dependencyProjects.forEach {
-    project.evaluationDependsOn(it.dependencyProject.path)
 }
 
 sourceSets {
@@ -63,10 +54,7 @@ minecraft {
 
 dependencies {
     compileOnly("org.spongepowered:mixin:0.8.5")
-
-    dependencyProjects.forEach {
-        implementation(it)
-    }
+    compileOnly("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
 }
 
 publishing {
@@ -76,16 +64,6 @@ publishing {
             artifact(tasks.named("sourcesJar"))
 
             artifactId = base.archivesName.get()
-
-            pom.withXml {
-                val dependenciesNode = asNode().appendNode("dependencies")
-                dependencyProjects.forEach {
-                    val dependencyNode = dependenciesNode.appendNode("dependency")
-                    dependencyNode.appendNode("groupId", it.group)
-                    dependencyNode.appendNode("artifactId", it.dependencyProject.base.archivesName.get())
-                    dependencyNode.appendNode("version", it.version)
-                }
-            }
         }
     }
 

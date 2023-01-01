@@ -1,4 +1,13 @@
-name: ${modAuthor}
-main: dev.entirety.enoughslime.bukkit.EnoughSlime
+name: ${modName}
+author: ${modAuthor}
 version: ${version}
+website: ${githubUrl}
+
+main: dev.entirety.enoughslime.bukkit.EnoughSlime
+depend: [Slimefun]
+
 api-version: ${minecraftApiVersion}
+
+commands:
+  enoughslime:
+    aliases: es

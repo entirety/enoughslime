@@ -16,6 +16,9 @@ val minecraftVersion: String by extra
 // Forge
 val forgeVersion: String by extra
 
+// JEI
+val jeiVersion: String by extra
+
 // Mappings
 val parchmentVersionForge: String by extra
 
@@ -25,8 +28,7 @@ base {
 }
 
 val dependencyProjects: List<ProjectDependency> = listOf(
-    project.dependencies.project(":common"),
-    project.dependencies.project(":common-api")
+    project.dependencies.project(":common")
 )
 
 dependencyProjects.forEach {
@@ -60,6 +62,11 @@ tasks.withType<JavaCompile> {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraftVersion}-${forgeVersion}")
+
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-forge-api:${jeiVersion}"))
+
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraftVersion}-forge:${jeiVersion}"))
 
     dependencyProjects.forEach {
         implementation(it)
